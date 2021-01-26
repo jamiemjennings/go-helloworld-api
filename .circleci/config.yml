@@ -26,3 +26,5 @@ jobs:
       - run: go get -v -t -d ./...
       - run: cd src/go/helloworld/ ; env GOOS=linux GOARCH=amd64 go build -o rest-api
       - run: cd src/go/helloworld/ ; docker build -t hello-world-go .
+      - run: docker run -d -p 3333:3333 hello-world-go
+      - run: curl -v http://localhost:3333
