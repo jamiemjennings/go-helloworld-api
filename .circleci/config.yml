@@ -23,6 +23,5 @@ jobs:
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run: cd src/go/helloworld/
-      - run: env GOOS=linux GOARCH=amd64 go build -o rest-api
+      - run: cd src/go/helloworld/ ; env GOOS=linux GOARCH=amd64 go build -o rest-api
       - run: docker build -t hello-world-go .
