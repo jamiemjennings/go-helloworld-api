@@ -2,6 +2,17 @@
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
+orbs:
+  wait-for: cobli/wait-for@0.0.2
+parameters:
+  timeout:
+    description: timeout
+    type: integer
+    default: 60
+  seconds-between-retries:
+    description: seconds
+    type: integer
+    default: 1
 jobs:
   build:
     docker:
@@ -27,4 +38,4 @@ jobs:
       - run: cd src/go/helloworld/ ; env GOOS=linux GOARCH=amd64 go build -o rest-api
       - run: cd src/go/helloworld/ ; docker build -t hello-world-go .
       - run: docker run -d -p 3333:3333 hello-world-go
-      - run: sleep 10 ; curl -v http://localhost:3333
+      - run: sleep 5 ; docker ps
